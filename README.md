@@ -1,6 +1,6 @@
-angular-authentication-example
+angular-jwt-authentication-example
 ==============================
 
-AngularJS Basic HTTP Authentication Example
+AngularJS JWT Authentication Example
 
-To see a demo and further details go to http://jasonwatmore.com/post/2014/05/26/AngularJS-Basic-HTTP-Authentication-Example.aspx
+To see a demo and further details go to http://jasonwatmore.com/post/2016/04/05/AngularJS-JWT-Authentication-Example-Tutorial.aspx
