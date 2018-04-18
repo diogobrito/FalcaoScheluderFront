@@ -3,15 +3,28 @@
 
     angular
         .module('app')
-        .controller('Home.IndexController', Controller);
+        .controller('Home.IndexController',['$scope','$http', Controller]);
 
-    function Controller() {
+    function Controller($scope,$http) {
         var vm = this;
 
-        initController();
+        profissionais();
+        horarios();
 
-        function initController() {
+        function profissionais(){
+
+            $http.post('/api/profissionais').success(function (response) {
+                $scope.profissionais = response;
+            });
         }
-    }
+        function horarios(){
 
+            $http.post('/api/horarios').success(function (response) {
+                $scope.horarios = response;
+            });
+        }
+
+
+        
+    }
 })();

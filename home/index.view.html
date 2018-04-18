@@ -1,4 +1,8 @@
-﻿<div class="col-md-10 col-md-offset-3">
+﻿<script src="C:/AmbienteJava/workspace/FalcaoScheluderFront/home/index.controller.js"></script>
+
+<div ng-controller="Home.IndexController">
+        
+<div class="col-md-10 col-md-offset-3">
     <h1>Agenda de serviços</h1>
     <p>Selecione um serviço e agende um horario!</p>
     <p><a href="#/login">Sair</a></p>
@@ -7,24 +11,19 @@
 
 <div class="col-md-6 col-md-offset-3">
     <h3>Servicos</h3>
-    <p><select>
-        <option>Selecione</option>
-        <option>cabelo</option>
-        <option>unha</option>
-        <option>pé</option>
-    </select></p>
-</div>
+    <p><select ng-options="s.nome for s in profissionais.profissionais |orderBy:'id'" ng-model="setorSelecionado">
+            <option value="">Selecione</option>
+        </select></p>
+    </div>
 
 <div class="col-md-6 col-md-offset-3">
     <h3>Horario</h3>
-    <p><select>
-        <option>Selecione</option>
-        <option>08:00</option>
-        <option>09:00</option>
-        <option>10:00</option>
+    <p><select ng-options="s.nome for s in horarios.horarios |orderBy:'id'" ng-model="horarioSelecionado">
+        <option value="">Selecione</option>
     </select></p>
 </div>
 <br/>
 <div class="col-md-6 col-md-offset-3">
    <button>Agendar</button>
+</div>
 </div>
