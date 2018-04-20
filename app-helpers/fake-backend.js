@@ -38,6 +38,11 @@
             return  [200, { horarios: [{ id: 2, nome: "07/05/2018-11:00" }, { id: 3, nome: "09/05/2018-13:00" },{ id: 1, nome: "09/05/2018-15:00" }]}, {}];
         });
 
+        $httpBackend.whenPOST('/api/parceiros').respond(function () {
+            // get parameters from post request
+            return  [200, { parceiros: [{ id: 2, nome: "Soho" }, { id: 3, nome: "Salão Stars" },{ id: 1, nome: "Atlas Engenharia" }]}, {}];
+        });
+
         /*
         $httpBackend.whenGET('/api/profissional/:id/agenda').respond(function (method, url, data, headers, params) {
             return [200, {  }, {}];

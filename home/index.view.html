@@ -8,11 +8,11 @@
     </div>
 
 
-    <form role="form">
+    <form role="form" ng-submit="vm.cadastrar()">
         <div class="row">
             <div class="form-group col-md-2">
                 <label>Parceiro</label>
-                <select class="form-control" ng-options="s.nome for s in profissionais.profissionais |orderBy:'id'" ng-model="setorSelecionado">
+                <select name="nomeParceiro" ng-model="vm.nomeParceiro" class="form-control" ng-options="s.nome for s in parceiros.parceiros |orderBy:'id'" ng-model="parceiroSelecionado">
                     <option value="">Selecione</option>
                 </select>
             </div>
@@ -35,7 +35,6 @@
             </div>
         </div>
     </form>
-
         
     <div class="row">
         <div class="col-md-6">
