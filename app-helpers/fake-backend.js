@@ -24,9 +24,6 @@
             }
         });
         
-        /*$httpBackend.whenGET('/api/profissionais').respond(function ( ) {
-            return [200, { profissionais: [{ id: 1, nome: "Denis" }, { id: 2, nome: "Marcelo" }]}, {}];
-        });*/
 
         $httpBackend.whenPOST('/api/profissionais').respond(function () {
             // get parameters from post request
@@ -43,24 +40,16 @@
             return  [200, { parceiros: [{ id: 2, nome: "Soho" }, { id: 3, nome: "Salão Stars" },{ id: 1, nome: "Atlas Engenharia" }]}, {}];
         });
 
-        /*
-        $httpBackend.whenGET('/api/profissional/:id/agenda').respond(function (method, url, data, headers, params) {
-            return [200, {  }, {}];
-        });
-
-        $httpBackend.whenPOST('/api/profissional/:id/agenda').respond(function (method, url, data, headers, params) {
+        $httpBackend.whenPOST('/api/servicosAgendados').respond(function () {
             // get parameters from post request
-            var params = angular.fromJson(data);
-
-            /*{
-                "professionalId": 1,
-                "dataInicio": "2010-06-09T15:20:00Z",
-                "usuarioId": 1
-            }
-            
-            return [200, {  }, {}];
+            return  [200, { servicosAgendados: [{ parceiro: "Soho", servico: "Cabelo", data: "20/06/2018 às 14:00" }, 
+                                                { parceiro: "Cinemark", servico: "Cinema", data: "20/07/2018 às 20:00" },
+                                                { parceiro: "PetFacil", servico: "Banho e Tosa", data: "30/05/2018 às 09:00" }
+                                            ]}, 
+            {}];
         });
-        */
+
+        
         // pass through any urls not handled above so static files are served correctly
         $httpBackend.whenGET(/^\w+.*/).passThrough();
     }

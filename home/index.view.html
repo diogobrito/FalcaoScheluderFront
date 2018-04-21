@@ -1,5 +1,4 @@
-﻿<script src="C:/AmbienteJava/workspace/FalcaoScheluderFront/home/index.controller.js"></script>
-
+﻿
 <div ng-controller="Home.IndexController">
     <div class="col-md-12">
         <h2>Agenda de serviços</h2>
@@ -7,34 +6,42 @@
         <p>Selecione um serviço e agende um horario!</p>
     </div>
 
-
-    <form role="form" ng-submit="vm.cadastrar()">
-        <div class="row">
-            <div class="form-group col-md-2">
-                <label>Parceiro</label>
-                <select name="nomeParceiro" ng-model="vm.nomeParceiro" class="form-control" ng-options="s.nome for s in parceiros.parceiros |orderBy:'id'" ng-model="parceiroSelecionado">
-                    <option value="">Selecione</option>
-                </select>
-            </div>
-            <div class="form-group col-md-2">
-                <label>Servicos</label>
-                <select class="form-control" ng-options="s.nome for s in profissionais.profissionais |orderBy:'id'" ng-model="setorSelecionado">
-                    <option value="">Selecione</option>
-                </select>
-            </div>
-            <div class="form-group col-md-2">
-                <label>Horario</label>
-                <select class="form-control" ng-options="s.nome for s in horarios.horarios |orderBy:'id'" ng-model="horarioSelecionado">
-                    <option value="">Selecione</option>
-                </select>
+    <div class="col-md-12">
+        <div class="col-md-6" >
+            <form role="form" ng-submit="vm.cadastrar()">
+                <div class="form-group col-md-4" >
+                    <label>Parceiro</label>
+                    <select name="nomeParceiro" ng-model="vm.nomeParceiro" class="form-control" ng-options="s.nome for s in parceiros.parceiros |orderBy:'id'" ng-model="parceiroSelecionado">
+                        <option value="">Selecione</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Servicos</label>
+                    <select name="nomeProfissional" ng-model="vm.nomeProfissional" class="form-control" ng-options="s.nome for s in profissionais.profissionais |orderBy:'id'" ng-model="setorSelecionado">
+                        <option value="">Selecione</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Horario</label>
+                    <select name="nomeHorario" ng-model="vm.nomeHorario" class="form-control" ng-options="s.nome for s in horarios.horarios |orderBy:'id'" ng-model="horarioSelecionado">
+                        <option value="">Selecione</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <button type="submit" class="btn btn-default">Agendar</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6" >
+            <div ng-repeat="servicos in servicosAgendados">
+                <div class="col-md-4" ng-repeat="s in servicos">
+                    <label>{{s.parceiro}}</label><br />
+                    <label>{{s.servico}}</label><br />
+                    <label>{{s.data}}</label><br /><br />
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="form-group col-md-2">
-                <button type="submit" class="btn btn-default">Agendar</button>
-            </div>
-        </div>
-    </form>
+    </div>
         
     <div class="row">
         <div class="col-md-6">
