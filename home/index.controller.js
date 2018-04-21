@@ -8,45 +8,38 @@
     function Controller($scope,$http) {
         var vm = this;
         vm.cadastrar = cadastrar;
+        vm.servicos = servicos;
+        vm.profissionais = profissionais;
+        vm.agenda = [];
 
-        profissionais();
-        horarios();
-        parceiros();
-        servicosAgendados();
+        $http.get('https://falcon-scheduler-api.herokuapp.com/industries').success(function (response) {
+            $scope.parceiros = response.industries;
+        });
+
+        $http.get('https://falcon-scheduler-api.herokuapp.com/scheduled').success(function (response) {
+            vm.agenda = response.response;
+        });
+
+        function profissionais(servicoId) {
+            $scope.profissionais = $scope.servicos.filter(
+                function (value) {
+                    return value.id == parseInt(servicoId)
+                }
+            )[0].professionals;
+        }
+
+        function servicos(servicoId){
+            $http.get('https://falcon-scheduler-api.herokuapp.com/industries/' + servicoId + '/services').success(function (response) {
+                $scope.servicos = response.services;
+            });
+        }
 
         function cadastrar() {
-            console.log("cadastrando...");
-            vm.loading = true;
-            console.log(vm.nomeParceiro.id);
-            console.log(vm.nomeParceiro.nome);
-            console.log(vm.nomeProfissional.id);
-            console.log(vm.nomeProfissional.nome);
-            console.log(vm.nomeHorario.id);
-            console.log(vm.nomeHorario.nome);
-        }
-
-        function profissionais(){
-            $http.post('/api/profissionais').success(function (response) {
-                $scope.profissionais = response;
+            $http.post('https://falcon-scheduler-api.herokuapp.com/scheduled', { professionalId: vm.profissionalSelecionado, startDate: vm.startDate }).success(function (response) {
+                $http.get('https://falcon-scheduler-api.herokuapp.com/scheduled').success(function (response) {
+                    vm.agenda = response.response;
+                });
             });
-        }
-        function horarios(){
-            $http.post('/api/horarios').success(function (response) {
-                $scope.horarios = response;
-            });
-        }
-
-        function parceiros(){
-            $http.post('/api/parceiros').success(function (response) {
-                $scope.parceiros = response;
-            });
-        }
-
-        function servicosAgendados() {
-            $http.post('/api/servicosAgendados').success(function (response) {
-                $scope.servicosAgendados = response;
-            });
-            
         }
     }
 })();

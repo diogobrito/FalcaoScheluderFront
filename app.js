@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app', ['ui.router', 'ngMessages', 'ngStorage', 'ngMockE2E'])
+        .module('app', ['ui.router', 'ngMessages', 'ngStorage'])
         .config(config)
         .run(run);
 
@@ -29,7 +29,7 @@
     function run($rootScope, $http, $location, $localStorage) {
         // keep user logged in after page refresh
         if ($localStorage.currentUser) {
-            $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
+            $http.defaults.headers.common.Authorization = $localStorage.currentUser.token;
         }
 
         // redirect to login page if not logged in and trying to access a restricted page

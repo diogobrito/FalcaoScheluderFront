@@ -14,7 +14,7 @@
         return service;
 
         function Login(username, password, callback) {
-            $http.post('/api/authenticate', { username: username, password: password })
+            $http.post('https://falcon-scheduler-api.herokuapp.com/auth', { username: username, password: password })
                 .success(function (response) {
                     // login successful if there's a token in the response
                     if (response.token) {
@@ -22,7 +22,7 @@
                         $localStorage.currentUser = { username: username, token: response.token };
 
                         // add jwt token to auth header for all requests made by the $http service
-                        $http.defaults.headers.common.Authorization = 'Bearer ' + response.token;
+                        $http.defaults.headers.common.Authorization = response.token;
 
                         // execute callback with true to indicate successful login
                         callback(true);
